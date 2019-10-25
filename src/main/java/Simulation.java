@@ -6,7 +6,8 @@ public class Simulation {
 
 
     public int[] diceSim() {
-        int[] arr = new int[(numberOfDice * 6) + 1];
+        Bins bin = new Bins(numberOfDice);
+        int[] arr = bin.getBin();
 
         for (int i = 0; i < numberOfRolls; i++) {
             Integer rollTotal = 0;
