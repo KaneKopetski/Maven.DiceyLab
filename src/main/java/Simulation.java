@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 public class Simulation {
     static Integer numberOfRolls = 1000000;
 
@@ -22,10 +20,14 @@ public class Simulation {
     @Test
     public void printHistogram() {
         int[] dataset = diceSim();
+        System.out.println("***");
+        System.out.println("Simulation of 2 dice tossed for 1000000 times.");
+        System.out.println("***\n");
+
+
         for (int i = 2; i < 13; ++i) {
             Float decimal = (float)dataset[i]/numberOfRolls;
             Double percent = Math.floor(decimal*100);
-
             System.out.printf("%2s :%9s:%5.2f " + printStars(percent) + "\n", i, dataset[i], decimal);
 
         }
