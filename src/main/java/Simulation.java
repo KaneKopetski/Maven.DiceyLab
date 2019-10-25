@@ -1,8 +1,8 @@
-import org.junit.jupiter.api.Test;
+import java.util.Scanner;
 
 public class Simulation {
-    static Integer numberOfRolls = 100000;
-    int numberOfDice = 5;
+    static Integer numberOfRolls;
+    int numberOfDice;
 
 
     public int[] diceSim() {
@@ -19,15 +19,18 @@ public class Simulation {
         } return arr;
     }
 
-    @Test
-    public void printHistogram() {
+    public void runSimulation() {
+        getUserInput();
+        rollDice();
+    }
+
+    public void rollDice(){
         int[] dataset = diceSim();
 
         for (int i = numberOfDice; i < dataset.length; ++i) {
             Float decimal = (float)dataset[i]/numberOfRolls;
             Double percent = Math.floor(decimal*100);
             System.out.printf("%2s :%9s:%5.2f " + printStars(percent) + "\n", i, dataset[i], decimal);
-
         }
     }
 
@@ -36,6 +39,14 @@ public class Simulation {
         for (int i = 0; i < numberOfStars; i++) {
             sb.append("*");
         } return sb.toString();
+    }
+
+    public void getUserInput(){
+        System.out.println("How many d6 to roll?");
+        Scanner scanner = new Scanner(System.in);
+        numberOfDice = scanner.nextInt();
+        System.out.println("How many rolls?");
+        numberOfRolls = scanner.nextInt();
     }
 }
 
